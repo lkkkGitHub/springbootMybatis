@@ -1,4 +1,3 @@
-
 #日志
 logging:
   level:
@@ -10,19 +9,44 @@ logging:
 
 #spring配置
 spring:
-# 配置jdbc数据源
+  #配置jdbc数据源
   datasource:
-#    driver-class-name: com.mysql.jdbc.Driver  已经弃用，使用com.mysql.cj.jdbc.Driber
+    #driver-class-name: com.mysql.jdbc.Driver //已经弃用，使用com.mysql.cj.jdbc.Driber
     password: root
     username: root
-    url: jdbc:mysql://localhost:3306/ktv?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
-#    连接redis
+    url: jdbc:mysql://localhost:3306/ktv?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    type: com.alibaba.druid.pool.DruidDataSource
+    #数据源其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    #,log4j 添加这个到filters之后就报错
+    filters: stat,wall
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+  #连接redis
   redis:
     host: localhost
     port: 6379
-#  data:
+    #data:
     ##    mongodb:
     ##      uri: mongodb://localhost:
-#    tomcat启动端口号
+#tomcat启动端口号
 server:
   port: 8081
+
+#加载mybatis mapper文件
+mybatis:
+  config-location: classpath:mybatis/mybatis.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml

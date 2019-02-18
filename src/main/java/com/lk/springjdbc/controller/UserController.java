@@ -2,6 +2,8 @@ package com.lk.springjdbc.controller;
 
 import com.lk.springjdbc.finalUtils.UserFinalUtil;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -14,9 +16,10 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/user")
 public class UserController {
 
+    @PostMapping("/login")
     public String login(String username, String password, HttpSession session) {
         session.setAttribute(UserFinalUtil.USERNAME, username);
-        return "";
+        return "redirect:/compartment/getAll";
     }
 
 }

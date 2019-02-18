@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lk.springjdbc.mapper.TbCompartmentDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.lk.springjdbc.pojo.TbCompartment">
+        <result column="compartmentId" property="compartmentId"/>
+        <result column="compartmentName" property="compartmentName"/>
+        <result column="stateForenoon" property="stateForenoon"/>
+        <result column="stateAfternoon" property="stateAfternoon"/>
+        <result column="stateEvening" property="stateEvening"/>
+        <result column="state" property="state"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        `compartmentId`,
+        `compartmentName`,
+        `stateForenoon`,
+        `stateAfternoon`,
+        `stateEvening`,
+        `state`
+    </sql>
+
+    <select id="getAll" resultMap="AllColumnMap">
+        select * from tb_compartment
+    </select>
+</mapper>
+
