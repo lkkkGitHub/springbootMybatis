@@ -1,0 +1,28 @@
+
+#日志
+logging:
+  level:
+    com.lk: trace
+  file: my.log
+  pattern:
+    console: "%boldMagenta(%d{yyyy-MM-dd HH:mm:ss})  [%p]  %highlight(%C:%L)  : %m %n"
+    file: "%boldMagenta(%d{yyyy-MM-dd HH:mm:ss})  [%p]  %highlight(%C:%L)  : %m %n"
+
+#spring配置
+spring:
+# 配置jdbc数据源
+  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver  已经弃用，使用com.mysql.cj.jdbc.Driber
+    password: root
+    username: root
+    url: jdbc:mysql://localhost:3306/ktv?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+#    连接redis
+  redis:
+    host: localhost
+    port: 6379
+#  data:
+    ##    mongodb:
+    ##      uri: mongodb://localhost:
+#    tomcat启动端口号
+server:
+  port: 8081
